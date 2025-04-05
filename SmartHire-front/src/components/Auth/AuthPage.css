@@ -3,13 +3,14 @@
 :root {
   --gray: #8E9AAF;
   --lavender: #CBC0D3;
-  --pale: #EAC7CC;
+  --pale: #57141e;
   --white: #f6f6f6;
   --pink: #d4939d;
 }
 
 .auth-container {
   margin: auto;
+  display: flex;
   width: 650px;
   height: 550px;
   position: relative;

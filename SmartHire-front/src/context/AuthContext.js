@@ -5,15 +5,16 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); // ✅ added
 
   useEffect(() => {
-    // Vérifier l'authentification au chargement
     const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
     if (token && storedUser) {
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);
     }
+    setLoading(false); // ✅ indicate we're done checking
   }, []);
 
   const login = (token, userData) => {
@@ -35,7 +36,8 @@ export const AuthProvider = ({ children }) => {
       isAuthenticated, 
       user, 
       login, 
-      logout 
+      logout,
+      loading // ✅ exposed
     }}>
       {children}
     </AuthContext.Provider>
@@ -48,4 +50,4 @@ export const useAuth = () => {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-}; 
+};

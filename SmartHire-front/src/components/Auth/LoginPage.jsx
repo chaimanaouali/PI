@@ -4,10 +4,13 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axios';
 import './LoginPage.css';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // ✅ use login from context
+
 
   return (
     <div className="login-container">
@@ -29,8 +32,7 @@ const LoginPage = () => {
           try {
             setError('');
             const response = await axiosInstance.post('/auth/login', values);
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
+            login(response.data.token, response.data.user);
             navigate('/profile');
           } catch (error) {
             setError(error.response?.data?.message || 'Login failed');

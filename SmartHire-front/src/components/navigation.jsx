@@ -139,7 +139,7 @@ export const Navigation = (props) => {
             <li className="profile-menu-item" ref={dropdownRef}>
               <button 
                 onClick={handleProfileClick}
-                className="profile-link"
+                className="profile-link nav-link"
               >
                 {isAuthenticated ? (
                   <FaUserCircle size={24} />
@@ -148,7 +148,7 @@ export const Navigation = (props) => {
                 )}
               </button>
               {isAuthenticated && showDropdown && (
-                <div className="profile-dropdown">
+                <div className="profile-dropdown ">
                   <Link to="/profile" className="dropdown-item">
                     <FaUserCircle />
                     Profile

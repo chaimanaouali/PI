@@ -5,6 +5,8 @@
   padding: 15px;
   color: #555;
   transition: color 0.3s ease;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: larger;
 }
 
 .profile-link:hover {
